@@ -7,7 +7,7 @@ import Project from "../Projects/Project";
 import Skills from "../Skills/Services";
 import Contact from "../Contact/Contact";
 import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+import Header, { HeaderPhone } from "../Header/Header";
 import Cretification from "../Cretification/Cretification";
 
 const Home = ({ ratio }) => {
