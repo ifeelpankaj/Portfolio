@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { animate, motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
 import { BsArrowUpRight, BsChevronDown } from "react-icons/bs";
@@ -11,6 +11,7 @@ import Header from "../Header/Header";
 import Cretification from "../Cretification/Cretification";
 
 const Home = ({ ratio }) => {
+  const isMobile = window.innerWidth <= 768;
   const [menuOpen, setMenuOpen] = useState(false);
   const projectCount = useRef(null);
 
@@ -43,9 +44,39 @@ const Home = ({ ratio }) => {
       },
     },
   };
+  const chevronRef = useRef(null); // Ref for the BsChevronDown component
+  const [isScrolledToEnd, setIsScrolledToEnd] = useState(false); // Track scroll position
+
+  // Intersection Observer setup and scroll event listener
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const [entry] = entries;
+      chevronRef.current.style.opacity = entry.isIntersecting ? 1 : 0;
+    });
+
+    if (chevronRef.current) {
+      observer.observe(chevronRef.current);
+    }
+
+    const handleScroll = () => {
+      const scrollHeight = document.body.scrollHeight;
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const clientHeight = window.innerHeight;
+      const threshold = isMobile ? 0.9 : 0.8;
+      setIsScrolledToEnd(scrollTop + clientHeight >= scrollHeight*threshold);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [chevronRef,isMobile]);
   return (
     <Fragment>
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        {isMobile && <HeaderPhone menuOpen={menuOpen} setMenuOpen={setMenuOpen}showMenuIcon />}
       <div id="home">
         <section>
           <div>
@@ -69,7 +100,7 @@ const Home = ({ ratio }) => {
             />
 
             <div>
-              <a href="mailto:official.6packprogrammer@gmail.com">Hire Me</a>
+              <a href="mailto:ifeelpankaj@gmail.com">Hire Me</a>
               <a href="#work">
                 Projects <BsArrowUpRight />
               </a>
@@ -99,9 +130,9 @@ const Home = ({ ratio }) => {
           </div>
         </section>
         <section>
-          <img src={me} alt="Abhishek" />
+          <img src={me} alt="Pankaj" />
         </section>
-        <BsChevronDown />
+        <BsChevronDown ref={chevronRef} style={{ opacity: isScrolledToEnd ? 0 : 1 }} /> 
       </div>
       <div>
         <Project />

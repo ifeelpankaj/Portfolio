@@ -112,9 +112,9 @@
   }
 
   > svg {
-    position: absolute;
+    position: fixed;
     font-size: 4rem;
-    color: $color5;
+    color: $color6;
     left: 50%;
     bottom: 5%;
     transform: translateX(-50%);

@@ -18,10 +18,14 @@ const Header = ({ setMenuOpen, menuOpen }) => {
 export const HeaderPhone = ({ menuOpen, setMenuOpen }) => {
   return (
     <div className={`navPhone ${menuOpen ? "navPhoneComes" : ""}`}>
+      <button className="navBtn" onClick={() => setMenuOpen(!menuOpen)}>
+        <AiOutlineMenu />  {/* Always render the hamburger icon */}
+      </button>
       <NavContent setMenuOpen={setMenuOpen} />
     </div>
   );
 };
+
 
 const NavContent = ({ setMenuOpen }) => (
   <>

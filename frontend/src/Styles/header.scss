@@ -54,7 +54,10 @@ nav {
   position: fixed;
   top: 2rem;
   right: 2rem;
-  display: none;
+  display: block;
+  @media (min-width: 787px) {
+    display: none;
+  }
 
   &:hover {
     color: $color3;

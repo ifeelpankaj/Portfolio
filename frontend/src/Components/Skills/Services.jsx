@@ -26,7 +26,7 @@ const Skills = () => {
           whileInView={animations.whileInView}
           initial={animations.initial}
         >
-          <h3>5+</h3>
+          <h3>2+</h3>
           <p>Years Experience</p>
         </motion.div>
         {user && user.skills ? (
