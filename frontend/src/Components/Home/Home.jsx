@@ -109,22 +109,14 @@ const Home = ({ ratio }) => {
             <aside>
               <article>
                 <p>
-                  +
-                  {ratio < 2 && (
-                    <motion.span
-                      ref={projectCount}
-                      whileInView={animationProjectsCount}
-                    >
-                      500
-                    </motion.span>
-                  )}
+                  +20
                 </p>
                 <span>Projects Done</span>
               </article>
 
               <article data-special>
                 <p>Contact</p>
-                <span>ifeelpankaj@gmail.com</span>
+                <span>pankajkholiya04@gmail.com</span>
               </article>
             </aside>
           </div>
